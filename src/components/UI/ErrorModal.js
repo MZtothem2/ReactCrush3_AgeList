@@ -8,7 +8,7 @@ const ErrorModal = (props) => {
   return (
     <div>
       {/* bg dim을 위한 추가 */}
-      <div className={classes.backdrop} />
+      <div className={classes.backdrop} onClick={props.onConfirm} />
 
       {/* Card의 css형태를 유지하기 위해 wrapping */}
       <Card className={classes.modal}>

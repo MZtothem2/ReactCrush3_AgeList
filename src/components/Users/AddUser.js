@@ -33,6 +33,7 @@ const AddUser = (props) => {
 
     console.log('addUserHandler', enteredUsername, enteredAge);
 
+    props.onAddUser(enteredUsername, enteredAge);
     setEnteredUsername('');
     setEnteredAge('');
   };
