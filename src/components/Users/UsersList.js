@@ -6,7 +6,7 @@ import classes from './UsersList.module.css';
 const UsersList = (props) => {
   return (
     // Card UI형태 유지 위해 Card Componont로 감쌈
-    <Card className={classes.users}> 
+    <Card className={classes.users}>
       <ul>
         {props.users.map((user) => (
           <li key={user.id}>

@@ -1,70 +1,34 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# S9. ref 심화
 
-## Available Scripts
+## 1. div 수프 
+React의 컴포넌트 트리가 복잡해질 수록
+컴포넌트의 최상위를 감싸는 div를 반복하게 되는데 이를 div soup라고 함.
+이에 대응하는 방식 필요
 
-In the project directory, you can run:
+### 1-1. Wrapper 컴포넌트 사용
+src/components/Helpers/Wrapper.js
+- html요소 없이 오로지 값만을 return
+- 각 컴포넌트 최상위를 <Wrapper>로 감싸면, 하나의 값만return 한다는 js 조건 충족. 더불어 실제 DOM에 html 요소를 생성하지 않음.
 
-### `npm start`
+### 1-2. React에서 제공하는 Fragment 사용
+- 위와 동일한 원리
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+## 2. React Portal
+- 엄밀히 말하면 modal은 요소 중 가장 위에 위치하는게 알맞음. 
+- 컴포넌트 형태로 modal를 사용하면 위치가 고정되지 않아, 단순한 페이지에는 문제 없어 보일수 있으나 복잡한 페이지에서는 기능적 문제 야기 가능
+- React에서 제공하는 포탈 사용하여, 실제로 DOM에서 modal컴포넌트를 최상위에 위치하도록 가능
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## 3. ref
+- 컴포넌트에서 ref를 만들고, 이를 렌더링하는 JSX에 연결을 설정함: useRef();
+- current prop을 가진 객체를 반환받을 수 있음. current: 실제 DOM 노드
+- DOM은 리액트에 의해서만 제어되는 것이 좋으므로 별도의 조작은 권장X, 
+  input값 등 현재의 값을 읽는 정도로 추천
+- 제어되는(controlled) 컴포넌트 / 제어되지 않는(uncontrolled) 컴포넌트 구분 필요
+    ** 참고 
+    https://goshacmd.com/controlled-vs-uncontrolled-inputs-react/
+    https://velog.io/@yukyung/React-제어-컴포넌트와-비제어-컴포넌트의-차이점-톺아보기
